@@ -1,9 +1,11 @@
-const API_URL = 'http://10.81.205.50:5000';
+import Constants from 'expo-constants'; // novo
 
+const { apiUrl } = Constants.expoConfig?.extra || {}; // novo
 
 export async function getCatalog(): Promise<any[]> { // alterado
     try {
-        const response = await fetch(`${API_URL}/api/catalog`);
+        // alterado
+        const response = await fetch(`${apiUrl}/api/catalog`);
         const data = await response.json();
         // console.log(data);
         // return Promise.resolve(data.catalog);
