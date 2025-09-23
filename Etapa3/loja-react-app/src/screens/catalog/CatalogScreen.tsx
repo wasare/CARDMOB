@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react"; // alterado
+import React, { useState, useEffect } from "react"; // alterado
 import { View, Text, FlatList, StyleSheet} from 'react-native';
 
 import CatalogCard from "./CatalogCard";
@@ -6,8 +6,11 @@ import CatalogCard from "./CatalogCard";
 // Todo: importar o serviço de recuperação do catalog
 import { getCatalog } from '../../services/catalogService'; // novo
 
+import { useShop } from "../../contexts/ShopContext";
+
 const CatalogScreen = ({navigation} : any) => {
     const [catalog, setCatalog] = useState<any[]>([]); // novo
+    const { addToCart } = useShop();
 
     // bloco novo
     useEffect(() => {
@@ -27,6 +30,7 @@ const CatalogScreen = ({navigation} : any) => {
     const handleBuyPress = (product : any) => {
         // 1 - Adicionar ao carrinho
         // 2 - Ir para a tela do carrinho
+        addToCart(product);
         console.log(product);
     };
 
