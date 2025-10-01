@@ -44,10 +44,14 @@ function TabNavigator() {
             <Tab.Screen
               name="Cart"
               component={CartScreen}
-              options={{title: 'Seu Carrinho'}}
+              options={{title: 'Seu Carrinho', headerShown: true}}
             />
             <Tab.Screen name="Settings" component={HomeScreen} />
-            <Tab.Screen name="Register" component={RegisterScreen} />
+            <Tab.Screen
+              name="Register"
+              component={RegisterScreen}
+              options={{title: 'Cadastrar', headerShown: true}}
+            />
         </Tab.Navigator>
     );
 }
