@@ -8,13 +8,14 @@ import { requestProfileById } from "../../services/profileService"; // novo
 
 function ProfileScreen({ navigation }: any) {
     const { theme, toggleTheme } = useTheme();
-    const { logout } = useAuth();
+    const { logout, userData } = useAuth();
     const [user, setUser] = useState({}); // novo
 
     // novo
     useEffect(() => {
         const fetchProfile = async () => {
             try {
+                console.log(userData); // novo
                 const user = await requestProfileById(1);
                 console.log(user);
                 setUser(user);
