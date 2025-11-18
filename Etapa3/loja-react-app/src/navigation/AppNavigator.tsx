@@ -14,6 +14,7 @@ import LoginScreen from "../screens/LoginScreen";
 import CatalogScreen from "../screens/catalog/CatalogScreen";
 import CartScreen from "../screens/cart/CartScreen";
 import CheckoutScreen from "../screens/cart/CheckoutScreen";
+import OrderInfoScreen from "../screens/cart/OrderInfoScreen";
 
 const AppStack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -79,6 +80,11 @@ function StackNavigator() {
         name="Checkout"
         component={CheckoutScreen}
         options={{title: "Concluir pedido"}}
+      />
+      <AppStack.Screen 
+        name="OrderInfo"
+        component={OrderInfoScreen}
+        options={{title: "Resumo do pedido"}}
       />
     </AppStack.Navigator>
   );
