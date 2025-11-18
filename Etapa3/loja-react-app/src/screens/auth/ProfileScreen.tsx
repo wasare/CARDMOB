@@ -15,8 +15,9 @@ function ProfileScreen({ navigation }: any) {
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                console.log(userData); // novo
-                const user = await requestProfileById(1);
+                
+                console.log('userData', userData); // novo
+                const user = await requestProfileById(userData?.id);
                 console.log(user);
                 setUser(user);
                 console.log('Carregou o usuário!');

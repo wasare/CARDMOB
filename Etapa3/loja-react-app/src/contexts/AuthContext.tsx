@@ -8,8 +8,8 @@ type AuthContextType = {
     login: (token: string) => Promise<void>;
     logout: () => Promise<void>;
     loading: boolean;
-    getUserDataFromToken: (token: string | null) => Promise<any[]>; // novo
-    userData: Promise<any[]>; // novo
+    getUserDataFromToken: () => Promise<void>; // correção
+    userData: any[]; // correção
 };
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
@@ -24,36 +24,44 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             const token = await AsyncStorage.getItem('token');
             if (token) {
                 setUser({ token });
+                await getUserDataFromToken(); // correção
             }
             setLoading(false);
         };
         loadUser();
-        getUserDataFromToken(); // novo
+       
     }, []);
 
     const login = async (token: string) => {
         await AsyncStorage.setItem('token', token);
         setUser({token});
+        await getUserDataFromToken(); // novo
     }
 
     const logout = async () => {
         await AsyncStorage.removeItem('token');
         setUser(null);
+        setUserData([]);
     }
 
     // novo callback.
     const getUserDataFromToken = async () => {
         const token = await AsyncStorage.getItem('token');
-        const tokenData = getTokenData(token);
-        setUserData(tokenData);
+        if (!token) {
+            setUserData([]);
+            return;
+        }
+        const tokenData = await getTokenData(token); // correção.
+        console.log(tokenData);
+        setUserData(tokenData || []);
     }
 
     return (
-        <AuthContext 
+        <AuthContext.Provider 
             value={{ user, login, logout, loading, userData }}
         >
             {children}
-        </AuthContext>
+        </AuthContext.Provider>
     );
 };
 
