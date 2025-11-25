@@ -9,6 +9,7 @@ import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/auth/ProfileScreen";
 import CheckoutScreen from "../screens/cart/CheckoutScreen";
 import OrderInfoScreen from "../screens/cart/OrderInfoScreen";
+import ManagerOrdersScreen from "../screens/auth/ManagerOrdersScreen";
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 const Tab = createBottomTabNavigator<AuthTabParamList>();
@@ -22,6 +23,11 @@ function AuthTabNavigator() {
               options={{ title: 'Área Logada' }}
             />
             <Tab.Screen name="Settings" component={HomeScreen} />
+            <Tab.Screen
+              name="Orders"
+              component={ManagerOrdersScreen}
+              options={{ title: 'Pedidos'}}
+            />
         </Tab.Navigator>
     );
 }
