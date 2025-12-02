@@ -10,6 +10,7 @@ import ProfileScreen from "../screens/auth/ProfileScreen";
 import CheckoutScreen from "../screens/cart/CheckoutScreen";
 import OrderInfoScreen from "../screens/cart/OrderInfoScreen";
 import ManagerOrdersScreen from "../screens/auth/ManagerOrdersScreen";
+import CatalogScreen from "../screens/catalog/CatalogScreen";
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 const Tab = createBottomTabNavigator<AuthTabParamList>();
@@ -17,6 +18,11 @@ const Tab = createBottomTabNavigator<AuthTabParamList>();
 function AuthTabNavigator() {
     return (
         <Tab.Navigator>
+            <Tab.Screen
+              name="Catalog"
+              component={CatalogScreen}
+              options={{ title: 'Menu' }}
+            />
             <Tab.Screen
               name="Home"
               component={ProfileScreen}
